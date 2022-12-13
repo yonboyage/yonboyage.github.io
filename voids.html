@@ -78,24 +78,38 @@
 				
 				<p>
 				Great question. 
-				<b>Cosmic voids</b> are vast regions of space with hardly anything in them.
-				It is estimated that on average, 
+				<b>Cosmic voids</b> are vast regions of space that contain very few galaxies or other cosmic structures.
+				These regions are much larger and emptier than the regions containing galaxy clusters, and are found between the filaments and walls of the cosmic web. 
+				Voids play an important role in the evolution and growth of large-scale structures.
+				They provide a "lab setting" to study isolated structure growth, for example in galaxies, as well as dark energy.
+				In addition, the way matter flows away from the center of the void can help us constrain cosmological parameters, like the matter and dark energy densities.
 				</p>
 				
 				<h3>
-				Why Do We Care About Voids Anyways?
+				What Shape Are Voids?
 				</h3>
 				
 				<p>
 				Another great question.
-				</p>
-
-				<h3>
-				What Shape are Voids?
-				</h3>
+				Despite the general definition of voids given above, they are not actually yet well-defined.
+				The main accepted answer is they are generally ellipsoidal, and tend to be more spherical as they increase in size.
+				However, this ignores the details, and there are a lot more questions that have yet to be answered:
+				<ul>
+  					<li>At what point is the region's density low enough to be considered a void?</li>
+  					<li>How small can voids get?</li>
+  					<li>What constitutes the boundary of a void?</li>
+					<li>Where is the center of a void?</li>
+					<li>Can voids cluster in the same way galaxies can?</li>
+				</ul>
 				
-				<p>
-				Wow, you are on a roll with these questions!
+				To even begin answering most of these, there needs to be a rigorous way to detect and catalogue voids. 
+				There exist void detectors, such as <a href="https://vast.readthedocs.io/en/latest/VoidFinder_intro.html">VoidFinder</a> and <a href="http://skysrv.pha.jhu.edu/~neyrinck/voboz/zobovhelp.html">ZOBOV</a>, but they have shortcomings that prevent them from satisfyingly answering the previous questions.
+				Instead, I created my own void finding algorithm based on the techniques of <b>persistent homology</b> presented in another page of this website.
+				Using persistence, voids are detected in a geometric, parameter-free way that is highly stable to noise.
+				Figure 2 demonstrates two-dimensional void detection in a slice of an IllustrisTNG simulation. 
+				The data points in this case are central subhalos of halos catalogued by Illustris, intended to be simple tracers of the cosmic web.
+				Notably, persistence keeps track of 
+				
 				</p>
 				
 				
