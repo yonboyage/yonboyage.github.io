@@ -22,6 +22,48 @@
                     font-family: 'Helvetica Neue';
                     font-size: 16px;
                 }
+				
+				img {
+					position: relative;
+					transform: scale(1);
+					transition: .5s ease;
+					background: rgba(255, 255, 255, 0);
+					border: 3px solid rgba(0, 0, 0, 0);
+					z-index: 1;
+					cursor: pointer
+				}
+				
+				.custom-image {
+					position: relative;
+					top: 0;
+        			left: 0;
+        			right: 0;
+        			bottom: 0;
+					background: rgba(255, 255, 255, 1);
+    				transform: scale(1);
+					transition: .5s ease;
+					z-index: 3;
+				}
+				
+				.active {
+    				position: relative;
+					top: 0;
+        			left: 0;
+        			right: 0;
+        			bottom: 0;
+					background: rgba(255, 255, 255, 1);
+    				transform: scale(1);
+					transition: .5s ease;
+					z-index: 3;
+					border: 3px solid rgba(0, 0, 0, .5);
+  				}
+				
+				img:hover {
+					transition: .5s ease;
+					border: 3px solid rgba(0, 0, 0, .5);
+					z-index: 2;
+					cursor: pointer
+				}
             </style>
         </meta>
     </head>
@@ -38,7 +80,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="./index.html">Home</a></li>
+                        <li><a href="./index.html">Home</a></li>
 						<li><a href="./About-me.html">About Me</a></li>
                         <li class="dropdown"><a href="./research.html"> Research <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -66,7 +108,7 @@
             
             <div class="col-sm-4">
                 <a href="./CV.pdf">
-                    <img src="./Yonny.jpg" style="width:100%"></img>
+                    <img src="./Yonny.jpg" style="width:100%" class="custom-image"></img>
                 </a>
 				<h3>Contact</h3>
                 
@@ -91,6 +133,15 @@
                 </p>
             </div>
         </div>
+		<script>
+			const images = document.querySelectorAll('img');
+
+			images.forEach(img => {
+  				img.addEventListener('click', function() {
+					this.classList.toggle('active');
+  				});
+			});
+		</script>
     </body>
     
     <!-- Bootstrap core JavaScript

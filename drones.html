@@ -21,6 +21,46 @@
                     font-family: 'Helvetica Neue';
                     font-size: 16px;
                 }
+				
+				img {
+					position: relative;
+					transform: scale(1);
+					transition: .5s ease;
+					background: rgba(255, 255, 255, 0);
+					z-index: 1;
+					cursor: pointer
+				}
+				
+				.custom-active {
+					position: relative;
+					top: 0;
+        			left: 0;
+        			right: 0;
+        			bottom: 0;
+					background: rgba(255, 255, 255, 1);
+    				transform: scale(1.5);
+					border: 100px;
+					transition: .5s ease;
+					z-index: 3;
+				}
+				
+				.active {
+    				position: relative;
+					top: 0;
+        			left: 0;
+        			right: 0;
+        			bottom: 0;
+					background: rgba(255, 255, 255, 1);
+    				transform: scale(1.5);
+					transition: .5s ease;
+					z-index: 3;
+  				}
+				
+				img:hover {
+					transition: .5s ease;
+					z-index: 2;
+					cursor: pointer
+				}
             </style>
         </meta>
     </head>
@@ -48,7 +88,7 @@
 						<li class="dropdown"><a href="./hobbies.html"> Hobbies and Interests <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="./scioly.html">Science Olympiad</a></li>
-								<li class="active"><a href="./drones.html">Drones</a></li>
+								<li><a href="./drones.html">Drones</a></li>
 							</ul>
 						<li><a href="CV.pdf">Curriculum Vitae</a></li>
                         </li>
@@ -114,6 +154,15 @@
 				</h2>
 			</div>
         </div>
+		<script>
+			const images = document.querySelectorAll('img');
+
+			images.forEach(img => {
+  				img.addEventListener('click', function() {
+					this.classList.toggle('active');
+  				});
+			});
+		</script>
     </body>
     
     <!-- Bootstrap core JavaScript
