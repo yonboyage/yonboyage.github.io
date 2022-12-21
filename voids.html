@@ -56,7 +56,7 @@
     				transform: scale(1.5);
 					transition: .5s ease;
 					z-index: 3;
-					border: 3px solid rgba(0, 0, 0, .5);
+					border: 3px solid rgba(0, 0, 0, .2);
   					border-radius: 20px;
   				}
 				
@@ -131,6 +131,8 @@
 				In addition, the way matter flows away from the center of the void can help us constrain cosmological parameters, like the matter and dark energy densities.
 				</p>
 				
+				<br>
+				
 				<h3>
 				What Shape Are Voids?
 				</h3>
@@ -152,25 +154,151 @@
 				There exist void detectors, such as <a href="https://vast.readthedocs.io/en/latest/VoidFinder_intro.html">VoidFinder</a> and <a href="http://skysrv.pha.jhu.edu/~neyrinck/voboz/zobovhelp.html">ZOBOV</a>, but they have shortcomings that prevent them from satisfyingly answering the previous questions.
 				Instead, I created my own void finding algorithm based on the techniques of <b>persistent homology</b> presented in another page of this website.
 				Using persistence, voids are detected in a geometric, parameter-free way that is highly stable to noise.
-				Figure 2 demonstrates two-dimensional void detection in a slice of an IllustrisTNG simulation. 
+				Figure 2 demonstrates some void detection in a slice of an IllustrisTNG simulation by tracing one-dimensional loops. 
 				The data points in this case are central subhalos of halos catalogued by Illustris, intended to be simple tracers of the cosmic web.
-				Notably, persistence keeps track of 
+				More detail about this figure is found in the previous research page as well.
 				
 				</p>
-				
-				
-				
-				
-            </div>
+			</div>
             
-            <div class="col-sm-5">	 
+            <div class="col-sm-5" align="center">	 
+                <img src="voids chart.png" width="100%"></img>
                 <p>
-                [Figures go here]
-				</p>
-
-                
+				Fig. 1: Chart of the voids near the Milky Way
                 </p>
+				<img src="31_5 slice loops.png" width="100%"></img>
+				<p>
+				Fig. 2: Three voids found with persistent homology
+				</p>
             </div>
+			
+			<div class="col-sm-12">
+			<br>
+			</div>
+			
+			<div class="col-sm-6">
+				<h3>
+				Void Centroids
+				</h3>
+				
+				<p>
+				In order to answer the questions, we must start by asking: where are the <b>centroids</b> of these voids?
+				Figure 3 shows an annulus of points, where we can clearly and easily identify the center at the origin.
+				It has a clear symmetry, and its randomly scattered points average out to the coordinate (0, 0).
+				However, data may not always be so abundant, nor have such a symmetrical distribution.
+				For instance, it may look like figure 4, which has many more points on the left side than the right.
+				A human eye may be able to trace the shape, connect the dots, and point to a rough center, ignoring the imbalance of data.
+				But, taking an average of the coordinates will clearly skew the centroid to the left.
+				How do we tell a computer where to find the true, visual centroid?
+				Furthermore, what about generalizing it to any shape and not just circles and ellipses?
+				
+				<br><br>
+				
+				My solution is to introduce <b>Delaunay triangulation</b>, a specific type of <b>triangulation</b>, or an algorithm that connects the dots in such a way to form unique, non-overlapping triangles.
+				The triangulation of the imbalanced ring is shown in figure 5.
+				Given this, I can calculate the centroids of each triangle using a basic average of its verteces.
+				I can also find each triangle's area by a well-known formula in coordinate geometry.
+				Finally, I take an average of those centroids weighted by their corresponding areas, and I get the centroid I wanted.
+				It makes sense to think of this as the centroids that weighed more contribute more because they represent a larger area in the interior of the shape.
+				In the figure, the red point is the center of the circle while purple is the calculated centroid of the circumscribed points.
+				Pretty good!
+				
+				<br><br>
+				
+				Let's try this on a few other cases.
+				Figure 6 is a much sparser set of points translated off the origin, and luckily the algorithm still works!
+				There is a little bit of a shift from the red dot, but in fact for such a low number of points, the purple dot is more representative of the centroid anyways.
+				Figure 7 is two ovelapping imbalanced rings, and it works just as well as any other test case.
+				The black dots help visualize the centroids of each triangle.
+				I could keep going and trying other cases, but I think this current algorithm is sufficient for the purposes of my project.
+				It is fast, intuitive, and gives the desired results. 
+				
+				<br><br>
+				
+				
+				</p>
+            </div>
+			
+			<div class="col-sm-3" align="middle">
+			<br><br>
+			<img src="annulus test case.png" width="100%"></img>
+				<p>
+				Fig. 3: A constructed annulus test case
+				</p>
+			</div>
+			
+			<div class="col-sm-3" align="middle">
+			<br><br><br>
+			<img src="imbalanced ring.png" width="100%"></img>
+				<p>
+				Fig. 4: An imbalanced ring
+				</p>
+			</div>
+			
+			<div class="col-sm-6" align="middle">
+			<br><br>
+			<img src="imbalanced ring triangulation.png" width="65%"></img>
+				<p>
+				Fig. 5: Delaunay triangulation of the imbalanced ring
+				</p>
+			</div>
+			
+			<div class="col-sm-3" align="middle">
+			<br>
+			<img src="sparse imbalanced ring.png" width="100%"></img>
+				<p>
+				Fig. 6: Shifted, sparse, imbalanced ring
+				</p>
+			</div>
+			
+			<div class="col-sm-3" align="middle">
+			<br>
+			<img src="overlapping rings.png" width="100%"></img>
+				<p>
+				Fig. 7: Overlapping imbalanced rings
+				</p>
+			</div>
+			
+			<div class="col-sm-12">
+			
+				<p>
+				Okay, this is looking great.
+				But what about the fact that space is (at least) three dimensions?
+				Luckily, this technique can indeed be generalized to higher dimensions.
+				Instead of triangles, I can use tetrahedra, their centroids, and their volumes as weights for the centroids.
+				</p>
+				<br>
+			</div>
+			
+			<div class="col-sm-4">
+				
+				<p>
+				Applying this method of calculating the centroids to the voids from earlier, we can see in figure 8 that it does indeed work for abstract shapes as well.
+				The magenta void especially benefits from the technique I developed, as it has a clear imbalance of data points on the top and bottom.
+				However, recall that this is a thin slice of the simulation, and I am only tracing the one-dimensional loops with persistent homology.
+				This means we can do better.
+				</p>
+			</div>
+			
+			<div class="col-sm-8" align="middle">
+			<img src="loop 1.png" width="32%"></img>
+			<img src="loop 2.png" width="32%"></img>
+			<img src="loop 3.png" width="32%"></img>
+				<p>
+				Fig. 8: Three loops detected by persistent homology with their centroids
+				</p>
+			</div>
+			
+			<div class="col-sm-12"></div>
+			
+			<div class="col-sm-6">
+			[In progress]
+			</div>
+			
+			<div class="col-sm-6" align="middle">
+			
+			</div>
+			
         </div>
 		<script>
 			const images = document.querySelectorAll('img');
