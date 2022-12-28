@@ -10,6 +10,7 @@
 
 		gtag('config', 'G-5MSKJH3VR6');
 	</script>
+	<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <title>Yonny Sklansky</title>
         <meta charset="utf-8" meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
@@ -105,7 +106,7 @@
 								<li><a href="./scioly.html">Science Olympiad</a></li>
 								<li><a href="./drones.html">Drones</a></li>
 							</ul>
-						<li><a href="./CV.pdf">Curriculum Vitae</a></li>
+						<li><a href="./CV.pdf" target="_blank">Curriculum Vitae</a></li>
                         </li>
                     </ul>
                 </div>
@@ -130,9 +131,13 @@
 				Though the title is daunting, I'm not going to propose the end of the world.
 				Actually, this theory studies the sudden changes of the characteristics of a system when changing certain variables.
 				This is similar to phase changes in regular matter, for instance when water turns to ice by changing its temperature.
+				On this page, I will describe how I use this theory to classify gravitational collapse and structure formation on the largest scales, analogous to phase changes.
+				
+				<br><br>
+				
 				In general, these points of sudden change are called <b>singularities</b>, and the type of change is named its <b>catastrophe</b>.
 				One can determine these singularities by following the <b>potential function</b> of the system, the function which determines its behavior.
-				At times when the derivative of the potential is zero is when you can find its singularities.
+				At the times when the derivative of the potential is zero, you can find its singularities.
 				More commonly in calculus, these points are referred to as the function's <b>critical points</b>.
 				However, the singularities we care about are often <b>degenerate</b>, meaning that higher derivatives are zero as well, and represent a dramatic change in the system's characteristics.
 				
@@ -141,7 +146,45 @@
 				
 				Now that we have the basic idea, let's explore <b>Lagrangian</b> catastrophe theory, which is where we will discover caustics later on.
 				In this framework, we use simulations to study an evolving fluid, like dark matter (DM), in Lagrangian space.
-				That is, at the start of the simulation, we assign each DM particle a coordinate
+				That is, at the start of the simulation, we assign each DM particle, \(i\), a coordinate, \(\mathbf{q}_i\), relative to the particles around it, that doesn't change with time.
+				This coordinate signifies that particle's starting position.
+				Then, for each particle, subtracting the Lagrangian coordinate from its <b>Eulerian</b> coordinate \(\mathbf{x}(t,\mathbf{q}_i)\), or its true position in space at time \(t\), yields its displacement: \(\mathbf{x}(t, \mathbf{q}_i)= \mathbf{q}_i + \mathbf{s}(t, \mathbf{q}_i)\).
+				Note that each particle has the same mass, and the start of the simulation spreads them out in a nearly constant density, with tiny fluctuations to represent quantum randomness imprinted into the initial conditions of the universe.
+				
+				<br><br>
+				</p>
+				
+				<h3>
+				Caustics
+				</h3>
+				
+				<p>
+				Let's not lose the objective we set out to accomplish.
+				I promised that all this can be used to understand gravitational collapse.
+				In fact, the displacements are all we need to construct what we call <b>caustics</b>, which are simply the singularities corresponding to Lagrangian catastrophes.
+				Explicitly, caustics trace out surfaces containing <b>multi-stream regions</b>.
+				A single multi-stream point in Eulerian space corresponds to several single-stream points in Lagrangian space.
+				In simple terms, this means that DM particles which started at different coordinates overlap on one coordinate.
+				Recalling that caustics are the boundaries of the multi-stream regions, we can deduce that they mark regions with infinite density, infinitessimal radius, and thus finite mass.
+				
+				<br><br>
+				
+				To go about evaluating these caustics, we calculate the gradients of the displacements, which return the <b>deformation tensor</b>, or the matrix describing how the fluid deforms and shifts.
+				(A more complete picture of the math involved can be found in <a href=https://arxiv.org/pdf/2212.07840.pdf>this paper</a>.
+				Here I am more focused on the intuition and idea behind the process.)
+				Taking the determinant of the deformation tensor yields a measure of how the volume changed at each point in space, with <b>1</b> as no change, <b>>1</b> corresponding to a growth, and <b><1</b> to a shrink.
+				A value of <b>0</b> is therefore what we are looking for, as it is linked to a shrink down to an infinitessimal volume.
+				Finally, negative values correspond to a flip across an axis.
+				
+				<br><br>
+				
+				To simplify, let's take an example.
+				Suppose we track the evolution of the determinant over time for a single DM particle named "Bob".
+				Refer to figure 3 for the example, as it corresponds to an actual particle in the simulation I used.
+				The determinant must obviously start at 1, as it represents no change to the volume surrounding Bob.
+				In a region where gravity leads to collapse, the determinant must decrease.
+				Eventually, the particle encounters other particles, reaching a determinant of 0, and forming a multi-stream region.
+				The particles on either side of 
 				</p>
             </div>
             
