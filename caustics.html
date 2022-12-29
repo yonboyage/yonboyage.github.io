@@ -153,7 +153,29 @@
 				
 				<br><br>
 				</p>
+			</div>
 				
+			<div class="col-sm-5" align="middle">	
+				<br> 
+                <img src="sample caustic.png" width="100%"></img>
+				<p>
+                Fig. 1: A caustic with a vertically-varying potential function; the shaded region is a "fold" catastrophe
+				</p>
+				
+				<br>
+				
+				<img src="initial conditions.png" width="49%"></img>
+				<img src="slice of cosmic web.png" style="width:49%"></img>
+				<p>
+				Fig. 2: Initial distribution of a dark matter simulation with slight fluctuations, and its later evolution
+				</p>
+				
+				<br>
+			</div>
+			
+			<div class="col-sm-12"></div>
+			
+			<div class="col-sm-7">
 				<h3>
 				Caustics
 				</h3>
@@ -174,27 +196,81 @@
 				Here I am more focused on the intuition and idea behind the process.)
 				Taking the determinant of the deformation tensor yields a measure of how the volume changed at each point in space, with <b>1</b> as no change, <b>>1</b> corresponding to a growth, and <b><1</b> to a shrink.
 				A value of <b>0</b> is therefore what we are looking for, as it is linked to a shrink down to an infinitessimal volume.
-				Finally, negative values correspond to a flip across an axis.
+				Finally, negative values correspond to a mirror flip across an axis.
 				
 				<br><br>
 				
 				To simplify, let's take an example.
 				Suppose we track the evolution of the determinant over time for a single DM particle named "Bob".
 				Refer to figure 3 for the example, as it corresponds to an actual particle in the simulation I used.
-				The determinant must obviously start at 1, as it represents no change to the volume surrounding Bob.
-				In a region where gravity leads to collapse, the determinant must decrease.
-				Eventually, the particle encounters other particles, reaching a determinant of 0, and forming a multi-stream region.
-				The particles on either side of 
+				The determinant must start at 1, as it represents no change to the volume surrounding Bob.
+				In a region where gravity leads to collapse, the determinant must decrease, as the space around Bob gets smaller.
+				Eventually, Bob encounters other particles, such as "Alice", reaching a determinant of 0.
+				Bob and Alice occupying the same space thus form a multi-stream region.
+				But they don't just stop there, they continue traveling past each other.
+				As such, the determinant crosses zero and becomes negative, and this event is called <b>shell-crossing</b>.
+				Note that in a cosmic void, the determinant likely never crosses zero, and may even increase above 1.
+				
+				<br><br>
+				
+				Every particle in the simulation whose determinant crosses zero gets to be part of a caustic.
+				Then plotting all the caustics in the simulation allows for a reliable tracer of the cosmic web.
+				Such a gif is displayed in figure 4, where I show the IllustrisTNG DM simulation at z=1. 
+				
+				Since the only information we needed to construct and analyze the caustics was the displacements, we successfully developed a parameter-free identifier of the cosmic web.
+				
+				<br><br>
+				
+				But the technique is more powerful than this. 
+				In fact, using catastrophe theory, we can classify the type of structure within the web based on how many times the determinant crosses zero (and other more complicated conditions, such as the eigenvectors of the deformation tensor).
+				These classes have names, and often physical interpretations:
+				
+				<ul>
+				<li>\(A_2\): <b>Fold</b> catastrophe. Corresponds to a simple <b>collapsed region</b>.</li>
+				<li>\(A_3\): <b>Cusp</b> catastrophe. Corresponds to a <b>wall</b>.</li>
+				<li>\(A_4\): <b>Swallowtail</b> catastrophe. Corresponds to a <b>filament</b>.</li>
+				<li>\(A_5\): <b>Butterfly</b> catastrophe. Corresponds to a <b>cluster</b>.</li>
+				<li>\(B_4\): <b>Hyperbolic</b> catastrophe. Corresponds to a different type of <b>filament</b>.</li>
+				<li>\(B_5\): <b>Parabolic</b> catastrophe. Corresponds to a different type of <b>cluster</b>.</li>
+				</ul>
+				
+				All the formal mathematical descriptions can be found in <a href="https://arxiv.org/pdf/1703.09598.pdf">this paper</a>.
+				
+				<br><br>
+				
+				Now that we have such a unique, parameter-free analysis tool of the cosmic web, it is natural to connect it to my previous project on using persistent homology, as that is also purely geometric.
+				Rather than using subhalos as the data points representative of cosmic structure, we can use caustics.
+				In particular, mapping the caustics with the times of first shell-crossing outputs figure 5.
+				It is plotted in Lagrangian coordinates, or the initial position space, which is why it is a 256 by 256 grid since the simulation itself began with \(256^3\) particles.
+				The brighter spots are regions which experienced gravitational collapse earlier in the simulation, while the majority dark area denotes particles which have never done so. 
+				Using a <b>superlevel</b> filtration (as opposed to the previously-explored distance filtration), we can run persistent homology and analyze patterns in the cosmic web. 
+				
+				<br><br>
+				
+				This is the next phase of my project, and will be discussed in greater detail once I have results.
+				Thanks for reading!
 				</p>
             </div>
             
-            <div class="col-sm-5">	 
-                <p>
-                The caustics are in progress.
+			<div class="col-sm-5" align="middle">
+				<br><br>
+				
+				<img src="Bob.png" style="width:100%"></img>
+				<p>
+				Fig. 3: Bob's caustic formation journey
 				</p>
-
-                
-                </p>
+				
+				<br>
+				
+				<img style="width:100%" src="./caustics timeslice 35 mini.gif"></img>
+				<p>
+				Fig. 4: Caustics in a simulation; blues are DM particles, rainbows are caustics; axes are in units of Mpc
+				</p>
+				
+				<img src = "first shell crossing times.png" width="100%"></img>
+				<p>
+				Fig. 5: The times of first shell-crossing for a thin slice of a simulation in Lagrangian coordinates
+				</p>
             </div>
         </div>
 		
