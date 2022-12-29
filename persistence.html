@@ -77,6 +77,9 @@
 					cursor: pointer
 				}
 				
+				a:hover {
+					cursor: pointer
+				}
             </style>
         </meta>
     </head>
@@ -126,11 +129,11 @@
             
 			<div class="col-sm-12">
 				<h2>Table of Contents</h2>
-				<ul id="background">
-				  	<li><a href="#background">Astrophysics Background</a></li>
-				  	<li><a href="#persist">Persistent Homology</a></li>
-				  	<li><a href="#cosmic">Cosmic Persistence</a></li>
-					<li><a href="#next">Okay, But What's Next?</a></li>
+				<ul>
+				  	<li><a id="background">Astrophysics Background</a></li>
+				  	<li><a id="persist">Persistent Homology</a></li>
+				  	<li><a id="cosmic">Cosmic Persistence</a></li>
+					<li><a id="next">Okay, But What's Next?</a></li>
 				</ul
 			</div>
 			
@@ -154,8 +157,7 @@
 				
 				<br><br>
 				
-				<div id="persist">Note that I will be using co-moving Mpc, and to convert to "real" distances, one needs to multiply this by the dimensionless Hubble constant used by IllustrisTNG, h=0.677.
-				</div>
+				Note that I will be using co-moving Mpc, and to convert to "real" distances, one needs to multiply this by the dimensionless Hubble constant used by IllustrisTNG, h=0.677.
 				
 				<br><br>
 				
@@ -297,8 +299,7 @@
 				
 				<br><br>
 				
-				<div id="cosmic">In the next section I will describe how I applied persistent homology to the cosmic web, and suggest some future research questions.
-				</div>
+				In the next section I will describe how I applied persistent homology to the cosmic web, and suggest some future research questions.
 				
 				<br><br>
 			</p>
@@ -355,7 +356,7 @@
 			
 			<br><br>
 			
-			<div id="next">
+			<div>
 			So why did I pick a slice of the simulation and not the whole thing?
 			First of all, because it's harder to create a visualization of a three-dimensional simulation on a two-dimensional screen.
 			And second, it is quite computationally expensive.
@@ -384,14 +385,14 @@
 				</a>
 			</div>
 			
-			<div class="col-sm-12">
-				<h2 style="text-align:center">
-					<a href="./persistence.html">
-						Back to top
-					</a>
-				</h2>
+			<div class="col-sm-12" align="center">
+				<br><br>
+				<hr />
+				<button id="back-to-top">Back to top</button>
 			</div>
+		
         </div>
+		
 		<script>
 			const images = document.querySelectorAll('img');
 
@@ -400,6 +401,61 @@
 					this.classList.toggle('active');
   				});
 			});
+		</script>
+		
+		<script>
+		  document.getElementById('back-to-top').addEventListener('click', function(e) {
+		    e.preventDefault();
+		    window.scrollTo({
+		      top: 0,
+		      left: 0,
+		      behavior: 'smooth'
+		    });
+		  });
+		</script>
+		
+		<script>
+		  document.getElementById('background').addEventListener('click', function(e) {
+		    e.preventDefault();
+		    window.scrollTo({
+		      top: 280,
+		      left: 0,
+		      behavior: 'smooth'
+		    });
+		  });
+		</script>
+		
+		<script>
+		  document.getElementById('persist').addEventListener('click', function(e) {
+		    e.preventDefault();
+		    window.scrollTo({
+		      top: 740,
+		      left: 0,
+		      behavior: 'smooth'
+		    });
+		  });
+		</script>
+		
+		<script>
+		  document.getElementById('cosmic').addEventListener('click', function(e) {
+		    e.preventDefault();
+		    window.scrollTo({
+		      top: 2520,
+		      left: 0,
+		      behavior: 'smooth'
+		    });
+		  });
+		</script>
+		
+		<script>
+		  document.getElementById('next').addEventListener('click', function(e) {
+		    e.preventDefault();
+		    window.scrollTo({
+		      top: 4000,
+		      left: 0,
+		      behavior: 'smooth'
+		    });
+		  });
 		</script>
     </body>
     

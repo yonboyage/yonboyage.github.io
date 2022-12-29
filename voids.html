@@ -76,6 +76,10 @@
 					z-index: 2;
 					cursor: pointer
 				}
+				
+				a:hover {
+					cursor: pointer
+				}
             </style>
         </meta>
     </head>
@@ -123,7 +127,13 @@
             </div>
 			
 			<div class="col-sm-12">
-			
+				<h2>Table of Contents</h2>
+				<ul>
+					<li><a id="what">What are Voids?</a></li>
+				  	<li><a id="shape">What Shape are Voids?</a></li>
+				  	<li><a id="centroids">Void Centroids</a></li>
+					<li><a id="statistics">Void Statistics</a></li>
+				</ul
 			</div>
             
             <div class="col-sm-7">
@@ -137,6 +147,8 @@
 				These regions are much larger and emptier than the regions containing galaxy clusters, and are found between the filaments and walls of the cosmic web. 
 				Voids play an important role in the evolution and growth of large-scale structures.
 				They provide a "lab setting" to study isolated structure growth, for example in galaxies, as well as dark energy.
+				</p>
+				<p>
 				In addition, the way matter flows away from the center of the void can help us constrain cosmological parameters, like the matter and dark energy densities.
 				</p>
 				
@@ -175,6 +187,9 @@
                 <p>
 				Fig. 1: Chart of the voids near the Milky Way
                 </p>
+				
+				<br>
+				
 				<img src="31_5 slice loops.png" width="100%"></img>
 				<p>
 				Fig. 2: Three voids found with persistent homology
@@ -215,10 +230,10 @@
 				<br><br>
 				
 				Let's try this on a few other cases.
-				Figure 6 is a much sparser set of points translated off the origin, and luckily the algorithm still works!
+				Figure 6 is a much more sparse set of points translated off the origin, and the algorithm still works beautifully!
 				There is a little bit of a shift from the red dot, but in fact for such a low number of points, the purple dot is more representative of the centroid anyways.
 				Figure 7 is two ovelapping imbalanced rings, and it works just as well as any other test case.
-				The black dots help visualize the centroids of each triangle.
+				The black dots help visualize the centroids of each triangle, and the corresponding area weights.
 				I could keep going and trying other cases, but I think this current algorithm is sufficient for the purposes of my project.
 				It is fast, intuitive, and gives the desired results. 
 				
@@ -269,30 +284,30 @@
 			</div>
 			
 			<div class="col-sm-12">
-			
+				
 				<p>
 				Okay, this is looking great.
 				But what about the fact that space is (at least) three dimensions?
 				Luckily, this technique can indeed be generalized to higher dimensions.
 				Instead of triangles, I can use tetrahedra, their centroids, and their volumes as weights for the centroids.
 				</p>
-				<br>
+				
 			</div>
 			
-			<div class="col-sm-4">
+			<div class="col-sm-12">
 				
 				<p>
 				Applying this method of calculating the centroids to the voids from earlier, we can see in figure 8 that it does indeed work for abstract shapes as well.
 				The magenta void especially benefits from the technique I developed, as it has a clear imbalance of data points on the top and bottom.
 				However, recall that this is a thin slice of the simulation, and I am only tracing the one-dimensional loops with persistent homology.
-				This means we can do better.
+				This means we can do better, and identify 2-dimensional holes instead.
 				</p>
 			</div>
 			
-			<div class="col-sm-8" align="middle">
-			<img src="loop 1.png" width="32%"></img>
-			<img src="loop 2.png" width="32%"></img>
-			<img src="loop 3.png" width="32%"></img>
+			<div class="col-sm-12" align="middle">
+			<img src="loop 1.png" width="33%"></img>
+			<img src="loop 2.png" width="33%"></img>
+			<img src="loop 3.png" width="33%"></img>
 				<p>
 				Fig. 8: Three loops detected by persistent homology with their centroids
 				</p>
@@ -300,14 +315,25 @@
 			
 			<div class="col-sm-12"></div>
 			
-			<div class="col-sm-6">
-			[In progress]
+			<div class="col-sm-7">
+				<h3>
+				Void Statistics
+				</h3>
+				
+				<p>
+				[In progress]
+				</p>
 			</div>
 			
-			<div class="col-sm-6" align="middle">
+			<div class="col-sm-5" align="middle">
 			
 			</div>
 			
+			<div class="col-sm-12" align="center">
+				<hr />
+				<button id="back-to-top">Back to top</button>
+			</div>
+		
         </div>
 		<script>
 			const images = document.querySelectorAll('img');
@@ -317,6 +343,61 @@
 					this.classList.toggle('active');
   				});
 			});
+		</script>
+		
+		<script>
+		  document.getElementById('back-to-top').addEventListener('click', function(e) {
+		    e.preventDefault();
+		    window.scrollTo({
+		      top: 0,
+		      left: 0,
+		      behavior: 'smooth'
+		    });
+		  });
+		</script>
+		
+		<script>
+		  document.getElementById('what').addEventListener('click', function(e) {
+		    e.preventDefault();
+		    window.scrollTo({
+		      top: 270,
+		      left: 0,
+		      behavior: 'smooth'
+		    });
+		  });
+		</script>
+		
+		<script>
+		  document.getElementById('shape').addEventListener('click', function(e) {
+		    e.preventDefault();
+		    window.scrollTo({
+		      top: 540,
+		      left: 0,
+		      behavior: 'smooth'
+		    });
+		  });
+		</script>
+		
+		<script>
+		  document.getElementById('centroids').addEventListener('click', function(e) {
+		    e.preventDefault();
+		    window.scrollTo({
+		      top: 1050,
+		      left: 0,
+		      behavior: 'smooth'
+		    });
+		  });
+		</script>
+		
+		<script>
+		  document.getElementById('statistics').addEventListener('click', function(e) {
+		    e.preventDefault();
+		    window.scrollTo({
+		      top: 1900,
+		      left: 0,
+		      behavior: 'smooth'
+		    });
+		  });
 		</script>
     </body>
     

@@ -77,6 +77,10 @@
 					z-index: 2;
 					cursor: pointer
 				}
+				
+				a:hover {
+					cursor: pointer
+				}
             </style>
         </meta>
     </head>
@@ -122,6 +126,14 @@
     			</span>
 				</h2>
             </div>
+			
+			<div class="col-sm-12">
+				<h2>Table of Contents</h2>
+				<ul>
+				  	<li><a id="catastrophe">Catastrophe Theory</a></li>
+				  	<li><a id="caustics">Caustics</a></li>
+				</ul
+			</div>
             
             <div class="col-sm-7">
                 <h3>
@@ -272,6 +284,11 @@
 				Fig. 5: The times of first shell-crossing for a thin slice of a simulation in Lagrangian coordinates
 				</p>
             </div>
+			<div class="col-sm-12" align="center">
+				<hr />
+				<button id="back-to-top">Back to top</button>
+			</div>
+
         </div>
 		
 		<script>
@@ -282,6 +299,39 @@
 					this.classList.toggle('active');
   				});
 			});
+		</script>
+		
+		<script>
+		  document.getElementById('back-to-top').addEventListener('click', function(e) {
+		    e.preventDefault();
+		    window.scrollTo({
+		      top: 0,
+		      left: 0,
+		      behavior: 'smooth'
+		    });
+		  });
+		</script>
+		
+		<script>
+		  document.getElementById('catastrophe').addEventListener('click', function(e) {
+		    e.preventDefault();
+		    window.scrollTo({
+		      top: 230,
+		      left: 0,
+		      behavior: 'smooth'
+		    });
+		  });
+		</script>
+		
+		<script>
+		  document.getElementById('caustics').addEventListener('click', function(e) {
+		    e.preventDefault();
+		    window.scrollTo({
+		      top: 880,
+		      left: 0,
+		      behavior: 'smooth'
+		    });
+		  });
 		</script>
     </body>
     
